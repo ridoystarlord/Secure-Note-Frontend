@@ -3,6 +3,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+import CopyToClipboard from 'react-copy-to-clipboard';
+import Highlighter from 'react-highlight-words';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { BsQuestionLg } from 'react-icons/bs';
@@ -12,7 +14,6 @@ import * as z from 'zod';
 import { API_URL, BASE_URL } from '../../environment/environment';
 import { createNewNote, deleteNote } from '../../services/note.service';
 import { NoteResponse } from '../../types/NoteResponse';
-
 const schema = z.object({
   message: z.string().min(1, { message: 'Message is Required' }),
   frontendSecretKey: z.string().optional(),
@@ -134,18 +135,38 @@ const GeneralUrl = ({ createNoteData }: Props) => {
               <section className="grid grid-cols-1 gap-2">
                 <div>
                   <h2 className="bg-amber-200  p-2 rounded">
-                    <span>
-                      {createNoteData !== null
-                        ? `${BASE_URL}/${createNoteData?.url}`
-                        : null}
-                    </span>
+                    <Highlighter
+                      highlightClassName="highLighterClassName"
+                      searchWords={[`${BASE_URL}/${createNoteData?.url}`]}
+                      autoEscape={true}
+                      textToHighlight={
+                        createNoteData !== null
+                          ? `${BASE_URL}/${createNoteData?.url}`
+                          : ''
+                      }
+                    />
                   </h2>
                   <h3 className="bg-amber-300 p-2">
                     The note will self-destruct after reading it.
                   </h3>
                 </div>
               </section>
-              <div className="flex justify-end items-center">
+              <div className="flex justify-between items-center">
+                <CopyToClipboard
+                  text={
+                    createNoteData !== null
+                      ? `${BASE_URL}/${createNoteData?.url}`
+                      : ''
+                  }
+                  onCopy={() => toast.success('Copied')}
+                >
+                  <button
+                    type="button"
+                    className="py-2 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-1 focus:ring-gray-200 "
+                  >
+                    Copy
+                  </button>
+                </CopyToClipboard>
                 <button
                   type="button"
                   onClick={handleDelete}

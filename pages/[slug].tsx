@@ -3,6 +3,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import CryptoJS from 'crypto-js';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { z } from 'zod';
@@ -194,6 +195,20 @@ const Slug = () => {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-amber-100 rounded border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Write your thoughts here..."
                   ></textarea>
+
+                  <div>
+                    <CopyToClipboard
+                      text={noteDetails?.message ?? ''}
+                      onCopy={() => toast.success('Copied')}
+                    >
+                      <button
+                        type="button"
+                        className="py-2 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-1 focus:ring-gray-200 "
+                      >
+                        Copy
+                      </button>
+                    </CopyToClipboard>
+                  </div>
                 </section>
               )}
             </div>

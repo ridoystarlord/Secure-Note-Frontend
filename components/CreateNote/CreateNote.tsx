@@ -76,7 +76,6 @@ const CreateNote = ({ setShowCreateNotePage, setCreateNoteData }: Props) => {
     data.message = encryptedMessage.toString();
     data.frontendSecretKey = secretKey;
     data.destroyTime = null;
-    console.log(data);
     toast.promise(
       createNewNoteMuteAsync(data),
       {
