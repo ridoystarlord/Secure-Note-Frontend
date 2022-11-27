@@ -114,7 +114,7 @@ const GeneralUrl = ({ createNoteData }: Props) => {
       <form id="create-note" onSubmit={handleSubmit(onSubmit, handleError)}>
         <div className="py-2">
           <div className="bg-white shadow">
-            <div className="w-[800px] mx-auto grid grid-cols-1 gap-2 p-3">
+            <div className="md:w-[800px] mx-auto grid grid-cols-1 gap-2 p-3">
               <div className="flex items-center justify-between">
                 <h1 className="text-2xl font-bold">Note link ready</h1>
                 <button
@@ -134,7 +134,7 @@ const GeneralUrl = ({ createNoteData }: Props) => {
 
               <section className="grid grid-cols-1 gap-2">
                 <div>
-                  <h2 className="bg-amber-200  p-2 rounded">
+                  <div className="bg-amber-200  p-2 rounded">
                     <Highlighter
                       highlightClassName="highLighterClassName"
                       searchWords={[`${BASE_URL}/${createNoteData?.url}`]}
@@ -145,7 +145,7 @@ const GeneralUrl = ({ createNoteData }: Props) => {
                           : ''
                       }
                     />
-                  </h2>
+                  </div>
                   <h3 className="bg-amber-300 p-2">
                     The note will self-destruct after reading it.
                   </h3>

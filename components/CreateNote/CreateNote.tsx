@@ -98,7 +98,7 @@ const CreateNote = ({ setShowCreateNotePage, setCreateNoteData }: Props) => {
       <form id="create-note" onSubmit={handleSubmit(onSubmit, handleError)}>
         <div className="py-2">
           <div className="bg-white shadow">
-            <div className="w-[800px] mx-auto grid grid-cols-1 gap-2 p-3">
+            <div className="md:w-[800px] mx-auto grid grid-cols-1 gap-2 p-3">
               <div className="flex items-center justify-between">
                 <h1 className="text-2xl font-bold">New note</h1>
                 <button
@@ -236,18 +236,18 @@ const CreateNote = ({ setShowCreateNotePage, setCreateNoteData }: Props) => {
                   </div>
                 </section>
               ) : null}
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center flex-col sm:flex-row gap-2">
                 <button
                   form="create-note"
                   type="submit"
-                  className="focus:outline-none text-white bg-[#960000] hover:bg-[#960000] focus:ring-1 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5"
+                  className="focus:outline-none text-white bg-[#960000] hover:bg-[#960000] focus:ring-1 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 w-full sm:w-auto"
                 >
                   Create Note
                 </button>
                 <button
                   type="button"
                   onClick={() => setShowOptions((prev) => !prev)}
-                  className="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-1 focus:ring-gray-200 "
+                  className="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-1 focus:ring-gray-200 w-full sm:w-auto"
                 >
                   {showOptions ? 'Hide Options' : 'Show Options'}
                 </button>
