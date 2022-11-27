@@ -164,7 +164,7 @@ const GeneralUrl = ({ createNoteData }: Props) => {
                     type="button"
                     className="py-2 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-1 focus:ring-gray-200 "
                   >
-                    Copy
+                    Copy Link
                   </button>
                 </CopyToClipboard>
                 <button

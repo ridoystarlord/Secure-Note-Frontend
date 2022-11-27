@@ -102,7 +102,7 @@ const Slug = () => {
       <div className="bg-slate-100 h-[93vh]">
         <div className="py-2">
           <div className="bg-white shadow">
-            <div className="w-[800px] mx-auto grid grid-cols-1 gap-2 p-3">
+            <div className="md:w-[800px] mx-auto grid grid-cols-1 gap-2 p-3">
               <div className="flex items-center justify-between">
                 <h1 className="text-2xl font-bold">Note contents</h1>
               </div>
@@ -205,7 +205,7 @@ const Slug = () => {
                         type="button"
                         className="py-2 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-1 focus:ring-gray-200 "
                       >
-                        Copy
+                        Copy Text
                       </button>
                     </CopyToClipboard>
                   </div>

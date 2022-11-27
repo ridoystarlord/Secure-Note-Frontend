@@ -2,6 +2,7 @@ import { DevTool } from '@hookform/devtools';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import CryptoJS from 'crypto-js';
+import { addDays, addHours } from 'date-fns';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -75,7 +76,19 @@ const CreateNote = ({ setShowCreateNotePage, setCreateNoteData }: Props) => {
 
     data.message = encryptedMessage.toString();
     data.frontendSecretKey = secretKey;
-    data.destroyTime = null;
+
+    if (data.destroyTime === '0') {
+      data.destroyTime = null;
+    } else if (data.destroyTime === '1') {
+      data.destroyTime = addHours(new Date(), 1).toISOString();
+    } else if (data.destroyTime === '24') {
+      data.destroyTime = addHours(new Date(), 24).toISOString();
+    } else if (data.destroyTime === '7') {
+      data.destroyTime = addDays(new Date(), 7).toISOString();
+    } else if (data.destroyTime === '30') {
+      data.destroyTime = addDays(new Date(), 30).toISOString();
+    }
+
     toast.promise(
       createNewNoteMuteAsync(data),
       {
