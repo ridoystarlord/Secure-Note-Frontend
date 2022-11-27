@@ -144,41 +144,6 @@ const GeneralUrl = ({ createNoteData }: Props) => {
                     The note will self-destruct after reading it.
                   </h3>
                 </div>
-                {/* <div>
-                    <label className="block mb-2 text-lg font-medium text-gray-900">
-                      Manual password
-                    </label>
-                    <div className="flex items-center gap-5">
-                      <div className="block w-full">
-                        <label
-                          form="password"
-                          className="block mb-1 text-sm text-gray-900 "
-                        >
-                          Enter a custom password to encrypt the note
-                        </label>
-                        <input
-                          {...register('password')}
-                          type="password"
-                          id="password"
-                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5 "
-                        />
-                      </div>
-                      <div className="block w-full">
-                        <label
-                          form="confirm_password"
-                          className="block mb-1 text-sm text-gray-900 "
-                        >
-                          Confirm password
-                        </label>
-                        <input
-                          {...register('confirmPassword')}
-                          type="password"
-                          id="confirm_password"
-                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5 "
-                        />
-                      </div>
-                    </div>
-                  </div> */}
               </section>
               <div className="flex justify-end items-center">
                 <button

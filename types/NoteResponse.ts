@@ -6,9 +6,14 @@ export type NoteResponse = {
   message?: string;
   name?: string;
   email?: string;
+  frontendSecretKey?: string;
   isDestroyed?: boolean;
 };
 
-export type NoteDelteResponse = {
+export type NoteDeleteResponse = {
   message?: string;
+};
+export type NoteHasPasswordResponse = {
+  message?: string;
+  hasPassword?: boolean;
 };

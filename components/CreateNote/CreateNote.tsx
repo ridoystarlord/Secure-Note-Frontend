@@ -1,12 +1,14 @@
 import { DevTool } from '@hookform/devtools';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
+import CryptoJS from 'crypto-js';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { BsQuestionLg } from 'react-icons/bs';
 import { FiX } from 'react-icons/fi';
+import short from 'short-uuid';
 import * as z from 'zod';
 
 import { createNewNote } from '../../services/note.service';
@@ -68,8 +70,13 @@ const CreateNote = ({ setShowCreateNotePage, setCreateNoteData }: Props) => {
   });
 
   const onSubmit = (data: noteType) => {
-    data.frontendSecretKey = '123456';
+    const secretKey = short.generate();
+    const encryptedMessage = CryptoJS.AES.encrypt(data.message, secretKey);
+
+    data.message = encryptedMessage.toString();
+    data.frontendSecretKey = secretKey;
     data.destroyTime = null;
+    console.log(data);
     toast.promise(
       createNewNoteMuteAsync(data),
       {

@@ -2,7 +2,8 @@ import axios from 'axios';
 
 import { noteType } from '../components/CreateNote/CreateNote';
 import { API_URL } from '../environment/environment';
-import { NoteDelteResponse, NoteResponse } from '../types/NoteResponse';
+import { hiddenNoteType } from '../pages/[slug]';
+import { NoteDeleteResponse, NoteResponse } from '../types/NoteResponse';
 
 export const createNewNote = () => {
   return {
@@ -42,7 +43,7 @@ export const deleteNote = () => {
   return {
     api(url: string) {
       return axios
-        .delete<NoteDelteResponse>(`${API_URL}/note/${url}`, {
+        .delete<NoteDeleteResponse>(`${API_URL}/note/${url}`, {
           headers: {
             'content-type': 'application/json',
           },
@@ -51,6 +52,23 @@ export const deleteNote = () => {
     },
     getKey() {
       return ['deleteNote'];
+    },
+  };
+};
+
+export const getHiddenNoteByUrl = (url?: string) => {
+  return {
+    api(note: hiddenNoteType) {
+      return axios
+        .post<NoteResponse>(`${API_URL}/note/hidden/${url}/`, note, {
+          headers: {
+            'content-type': 'application/json',
+          },
+        })
+        .then(({ data }) => data);
+    },
+    getKey() {
+      return ['getHiddenNoteByUrl', url];
     },
   };
 };
