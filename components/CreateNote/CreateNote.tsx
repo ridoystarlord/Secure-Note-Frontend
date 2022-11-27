@@ -10,6 +10,7 @@ import { FiX } from 'react-icons/fi';
 import * as z from 'zod';
 
 import { createNewNote } from '../../services/note.service';
+import { NoteResponse } from '../../types/NoteResponse';
 
 const schema = z.object({
   message: z.string().min(1, { message: 'Message is Required' }),
@@ -35,7 +36,12 @@ const defaultValue: noteType = {
   destroyTime: '0',
 };
 
-const CreateNote = () => {
+type Props = {
+  setShowCreateNotePage: React.Dispatch<React.SetStateAction<boolean>>;
+  setCreateNoteData: React.Dispatch<React.SetStateAction<NoteResponse | null>>;
+};
+
+const CreateNote = ({ setShowCreateNotePage, setCreateNoteData }: Props) => {
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const [showSecureNoteDescriptions, setShowSecureNoteDescriptions] =
     useState<boolean>(false);
@@ -56,7 +62,8 @@ const CreateNote = () => {
   const { mutateAsync: createNewNoteMuteAsync, status } = useMutation(api, {
     onSuccess(data) {
       reset();
-      router.push(`/${data.url}`);
+      setShowCreateNotePage(false);
+      setCreateNoteData(data);
     },
   });
 
