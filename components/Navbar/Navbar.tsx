@@ -1,11 +1,13 @@
 import React from 'react';
 
+import { BASE_URL } from '../../environment/environment';
+
 const Navbar = () => {
   return (
     <nav className="bg-[#960000]  px-2 sm:px-4 py-2.5">
       <div className="container flex flex-wrap items-center justify-between mx-auto sm:w-[800px] px-2">
-        <a href="http://localhost:3000" className="flex items-center">
-          <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+        <a href={`${BASE_URL}`} className="flex items-center">
+          <span className="self-center text-xl font-semibold whitespace-nowrap text-white">
             Secure Note
           </span>
         </a>

@@ -136,6 +136,7 @@ const GeneralUrl = ({ createNoteData }: Props) => {
                 <div>
                   <div className="bg-amber-200  p-2 rounded">
                     <Highlighter
+                      className="break-words"
                       highlightClassName="highLighterClassName"
                       searchWords={[`${BASE_URL}/${createNoteData?.url}`]}
                       autoEscape={true}
@@ -151,7 +152,7 @@ const GeneralUrl = ({ createNoteData }: Props) => {
                   </h3>
                 </div>
               </section>
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between flex-col sm:flex-row items-center gap-2">
                 <CopyToClipboard
                   text={
                     createNoteData !== null
@@ -162,7 +163,7 @@ const GeneralUrl = ({ createNoteData }: Props) => {
                 >
                   <button
                     type="button"
-                    className="py-2 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-1 focus:ring-gray-200 "
+                    className="py-2 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-1 focus:ring-gray-200 w-full sm:w-auto"
                   >
                     Copy Link
                   </button>
@@ -170,7 +171,7 @@ const GeneralUrl = ({ createNoteData }: Props) => {
                 <button
                   type="button"
                   onClick={handleDelete}
-                  className="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-amber-200 rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-1 focus:ring-gray-200 "
+                  className="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-amber-200 rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-1 focus:ring-gray-200 w-full sm:w-auto"
                 >
                   Destroy Note Now
                 </button>
