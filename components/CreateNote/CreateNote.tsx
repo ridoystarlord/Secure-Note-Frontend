@@ -110,7 +110,7 @@ const CreateNote = ({ setShowCreateNotePage, setCreateNoteData }: Props) => {
     <div className="bg-slate-100 h-[93vh]">
       <form id="create-note" onSubmit={handleSubmit(onSubmit, handleError)}>
         <div className="py-2">
-          <div className="bg-white shadow">
+          <div className="bg-white ">
             <div className="md:w-[800px] mx-auto grid grid-cols-1 gap-2 p-3">
               <div className="flex items-center justify-between">
                 <h1 className="text-2xl font-bold">New note</h1>

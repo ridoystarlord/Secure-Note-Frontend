@@ -10,7 +10,11 @@ import { z } from 'zod';
 
 import Navbar from '../components/Navbar/Navbar';
 import { getHiddenNoteByUrl, getNoteByUrl } from '../services/note.service';
-import { NoteHasPasswordResponse, NoteResponse } from '../types/NoteResponse';
+import {
+  NoteDestroyedResponse,
+  NoteHasPasswordResponse,
+  NoteResponse,
+} from '../types/NoteResponse';
 
 const schema = z.object({
   password: z.string().min(1, 'Password is required'),
@@ -25,6 +29,8 @@ const Slug = () => {
   );
   const [hasPassword, setHasPassword] =
     React.useState<NoteHasPasswordResponse | null>(null);
+  const [doesNoteDestroyed, setDoesNoteDestroyed] =
+    React.useState<NoteDestroyedResponse | null>(null);
   const router = useRouter();
   const { slug } = router.query;
 
@@ -48,12 +54,16 @@ const Slug = () => {
     enabled: Boolean(slug),
     onSuccess(data) {
       if (!data?.hasPassword) {
-        let decrypted = CryptoJS?.AES?.decrypt(
-          data?.message,
-          data?.frontendSecretKey,
-        );
-        data.message = decrypted.toString(CryptoJS.enc.Utf8);
-        setNoteDetails(data);
+        if (data?.isDestroyed) {
+          setDoesNoteDestroyed(data);
+        } else {
+          let decrypted = CryptoJS?.AES?.decrypt(
+            data?.message,
+            data?.frontendSecretKey,
+          );
+          data.message = decrypted.toString(CryptoJS.enc.Utf8);
+          setNoteDetails(data);
+        }
       } else {
         setHasPassword(data);
       }
@@ -101,10 +111,14 @@ const Slug = () => {
       <Navbar />
       <div className="bg-slate-100 h-[93vh]">
         <div className="py-2">
-          <div className="bg-white shadow">
+          <div className="bg-white ">
             <div className="md:w-[800px] mx-auto grid grid-cols-1 gap-2 p-3">
               <div className="flex items-center justify-between">
-                <h1 className="text-2xl font-bold">Note contents</h1>
+                <h1 className="text-2xl font-bold">
+                  {doesNoteDestroyed?.isDestroyed
+                    ? 'Note destroyed'
+                    : 'Note contents'}
+                </h1>
               </div>
               {status === 'loading' ? (
                 <div className="text-center">
@@ -181,6 +195,14 @@ const Slug = () => {
                       </div>
                     </div>
                   </form>
+                </div>
+              ) : doesNoteDestroyed?.isDestroyed ? (
+                <div className="grid grid-cols-1 gap-3">
+                  <p className="text-lg">
+                    If you havent read this note it means someone else has. If
+                    you read it but forgot to write it down, then you need to
+                    ask whoever sent it to re-send it.
+                  </p>
                 </div>
               ) : (
                 <section className="grid grid-cols-1 gap-2">

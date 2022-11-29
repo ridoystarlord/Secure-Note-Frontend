@@ -17,3 +17,7 @@ export type NoteHasPasswordResponse = {
   message?: string;
   hasPassword?: boolean;
 };
+export type NoteDestroyedResponse = {
+  message?: string;
+  isDestroyed?: boolean;
+};
