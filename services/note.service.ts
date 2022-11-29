@@ -1,7 +1,8 @@
 import axios from 'axios';
 
+import { API_URL } from 'environment';
+
 import { noteType } from '../components/CreateNote/CreateNote';
-import { API_URL } from '../environment/environment';
 import { hiddenNoteType } from '../pages/[slug]';
 import { NoteDeleteResponse, NoteResponse } from '../types/NoteResponse';
 
